@@ -47,7 +47,7 @@
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
-        const gridSize = 20;
+        const gridSize = 30;  
         let tileCountX = Math.floor(window.innerWidth / gridSize);
         let tileCountY = Math.floor(window.innerHeight / gridSize);
         canvas.width = tileCountX * gridSize;
@@ -69,11 +69,11 @@
             berry: new Image(),
         };
 
-        foodImages.apple.src = '1.jpg'; 
-        foodImages.banana.src = '2.jpg'; 
-        foodImages.cherry.src = '3.jpg'; 
-        foodImages.mango.src = '4.jpg'; 
-        foodImages.berry.src = '5.jpg'; 
+        foodImages.apple.src = '1.jpg.jpeg'; 
+        foodImages.banana.src = '2.jpg.jpeg'; 
+        foodImages.cherry.src = '3.jpg.jpeg'; 
+        foodImages.mango.src = 'snakehead.jpeg'; 
+        foodImages.berry.src = '5.jpg.png'; 
 
         document.addEventListener('keydown', changeDirection);
 
@@ -144,8 +144,10 @@
         function drawGame() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            const colors = ['#ff4b5c', '#ff784f', '#ffb26b', '#ffd56b'];
+            
             snake.forEach((segment, index) => {
-                ctx.fillStyle = index === 0 ? 'pink' : 'palepink';
+                ctx.fillStyle = index === 0 ? 'pink' : colors[index % colors.length]; 
                 ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize);
             });
 
